@@ -1,0 +1,73 @@
+@page
+@model WebApp1.Pages.Movies.IndexModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if (SignInManager.IsSignedIn(User)) {
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+}
+
+<!-- Begin search bar -->
+<form>
+    <p>
+        <input type="text" asp-for="SearchString" placeholder="Title.."/>
+        <input type="submit" value="Search"/>
+    </p>
+</form>
+<!-- End search bar -->
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Director)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Movie) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Director)
+            </td>
+            <td>
+                @if (SignInManager.IsSignedIn(User)) {
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit </a> 
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details </a> 
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                } else {
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> 
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
