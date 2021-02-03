@@ -1,0 +1,66 @@
+@page
+@model WebApp1.Pages.Reviews.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Leave a review</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div>
+                    <p>
+                        Rate this movie
+                    </p>
+                </div>
+                <div class="form-check-inline" id="user_rating">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optradio">Awful
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optradio">Mediocre
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optradio">Good
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optradio">Awesome
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optradio">Masterpiece
+                    </label>
+                </div>
+
+            
+            </div>
+            <div class="form-group">
+                <label asp-for="Review.UserReview" class="control-label"></label>
+                <textarea asp-for="Review.UserReview" class="form-control" rows="10"></textarea>
+                <span asp-validation-for="Review.UserReview" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="../Movies/Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -15,5 +15,7 @@ namespace WebApp1.Data
         }
 
         public DbSet<Movie> Movie {get;set;}
+
+        public DbSet<WebApp1.Models.Review> Review { get; set; }
     }
 }

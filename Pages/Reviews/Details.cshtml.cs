@@ -8,13 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using WebApp1.Data;
 using WebApp1.Models;
 
-namespace WebApp1.Pages.Movies
+namespace WebApp1.Pages.Reviews
 {
     public class DetailsModel : PageModel
     {
-
-        public int userReviewcount;
-
         private readonly WebApp1.Data.ApplicationDbContext _context;
 
         public DetailsModel(WebApp1.Data.ApplicationDbContext context)
@@ -22,7 +19,7 @@ namespace WebApp1.Pages.Movies
             _context = context;
         }
 
-        public Movie Movie { get; set; }
+        public Review Review { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,9 +28,9 @@ namespace WebApp1.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+            Review = await _context.Review.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Movie == null)
+            if (Review == null)
             {
                 return NotFound();
             }

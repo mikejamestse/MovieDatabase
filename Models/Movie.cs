@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,10 +33,6 @@ namespace WebApp1.Models {
 
         public double Rating {get;set;}
 
-        [StringLength(1000)]
-        public string Reviews {get;set;}
-
-
+        public ArrayList Reviews {get;set;}
     }
-    
 }
